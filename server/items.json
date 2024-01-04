@@ -1,0 +1,24 @@
+[
+    {
+        "id": 1,
+        "name": "Express Course",
+        "priceInCents": 10000,
+        "file": "Express.txt",
+        "listId": 2
+    },
+    {
+        "id": 2,
+        "name": "Github Course",
+        "priceInCents": 20000,
+        "file": "Github.txt",
+        "listId": 3
+    },
+    {
+        "id": 3,
+        "name": "JavaScript Course",
+        "priceInCents": 30000,
+        "file": "JavaScript.txt",
+        "listId": 4
+    }
+
+]

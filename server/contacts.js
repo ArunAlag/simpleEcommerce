@@ -1,0 +1,48 @@
+let apiInstance = require('./brevoApiInstance');
+let items = require('./items.json');
+
+// Create a contact
+async function linkContactAndItem(email, {listId}) {
+    let contact = await getContact(email);
+
+    if(contact == null) {
+        return createContact(email, listId);
+    } else {
+        return updateContact(contact.id, listId)
+    }
+}
+
+async function getContactPurchasedItems(email) {
+    if(email == null) return [] 
+
+    let contact = await getContact(email)
+
+    if(contact == null) return []
+
+    return items.filter(item => contact.listIds.includes(item.listId))
+
+}
+
+function getContact(emailOrId) {
+    return apiInstance.get(`/contacts/${emailOrId}`)
+    .then((res) => res.data)
+    .catch((error) => {
+        if(error.response.status === 404) return null
+        throw error
+    })
+}
+
+function createContact(email, listId) {
+    return apiInstance.post(`/contacts`, {
+        email,
+        listIds: [listId]
+    })
+}
+
+function updateContact(emailOrId, listId) {
+    return apiInstance.put(`/contact/${emailOrId}`,{
+        listIds: [listId]
+    })
+}
+
+module.exports = {linkContactAndItem, getContactPurchasedItems}
