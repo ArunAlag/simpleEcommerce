@@ -16,7 +16,7 @@ const DOWNLAOD_LINK_EXPIRATION_TIME = 10 * 60 * 1000; // 10 minutes expiration t
 const COOKIE_EXPIRATION = 30 * 24 * 60 * 60 * 1000 // 30 days
 const PORT = 3000;
 const SERVER_URL = 'https://simpleecommerce-backend.onrender.com';
-const CLIENT_URL = 'https://inquisitive-queijadas-f48003.netlify.app'
+const CLIENT_URL = 'http://localhost:1234';
 
 // Initiate
 
