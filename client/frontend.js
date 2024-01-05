@@ -14,9 +14,11 @@ emailForm.addEventListener('submit',async (e) => {
 })
 
 async function loadItems() {
+    console.log("Loading Items")
     // Get the items from API
     let items = await getItems();
 
+    console.log(items)
     // Ensure the page is clean
     itemList.innerHTML = '';
 
