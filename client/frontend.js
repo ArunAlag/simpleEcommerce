@@ -5,6 +5,9 @@ let itemList = document.querySelector('[data-item-list]');
 let template = document.querySelector('#item-template');
 let emailForm = document.querySelector('[data-email-form]');
 let emailInput = document.querySelector('[data-email-input]');
+let body = document.querySelector('body')
+
+body.style.background = "red";
 
 emailForm.addEventListener('submit',async (e) => {
     e.preventDefault();
