@@ -5,9 +5,9 @@
   },
   "name": "client",
   "version": "1.0.0",
-  "main": "index.js",
   "scripts": {
-    "start": "parcel index.html download-links.html"
+    "start": "parcel index.html download-links.html",
+    "build": "parcel build index.html download-links.html"
   },
   "keywords": [],
   "author": "",
