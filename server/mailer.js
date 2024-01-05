@@ -1,7 +1,8 @@
+const SERVER_URL = 'https://simpleecommerce-backend.onrender.com';
 let apiInstance = require('./brevoApiInstance');
 
 function sendDownloadLink(email, downloadlinkCode, item) {
-    let downloadLink = `${process.env.SERVER_URL}/download/${downloadlinkCode}`
+    let downloadLink = `${SERVER_URL}/download/${downloadlinkCode}`
     return sendEmail({email,
         subject: `Download ${item.name}`,
         htmlContent: `
@@ -18,10 +19,10 @@ function sendAllDownloadLinks(email, downloadableItems) {
 
     return sendEmail({email, subject: "Download Your Files",
      htmlContent: downloadableItems.map(({item, code}) => {
-        return `<a href="${process.env.SERVER_URL}/download/${code}">Download ${item.name} </a>`
+        return `<a href="${SERVER_URL}/download/${code}">Download ${item.name} </a>`
      }).join('<br>'),
      textContent: downloadableItems.map(({item, code}) => {
-        return `Download ${item.name} ${process.env.SERVER_URL}/download/${code}`
+        return `Download ${item.name} ${SERVER_URL}/download/${code}`
      }).join('<br>'),
     })
 }

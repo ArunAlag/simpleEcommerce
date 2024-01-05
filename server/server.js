@@ -9,7 +9,14 @@ let {v4: uuidV4} = require('uuid');
 // Local imports 
 let items = require('./items.json'); // [Local DB]
 let {sendDownloadLink, sendAllDownloadLinks} = require('./mailer');
-const { linkContactAndItem, getContactPurchasedItems } = require('./contacts');
+let { linkContactAndItem, getContactPurchasedItems } = require('./contacts');
+
+// Constants
+const DOWNLAOD_LINK_EXPIRATION_TIME = 10 * 60 * 1000; // 10 minutes expiration time
+const COOKIE_EXPIRATION = 30 * 24 * 60 * 60 * 1000 // 30 days
+const PORT = 3000;
+const SERVER_URL = 'https://simpleecommerce-backend.onrender.com';
+const CLIENT_URL = 'https://inquisitive-queijadas-f48003.netlify.app'
 
 // Initiate
 
@@ -19,14 +26,9 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cors({
     credentials: true,
-    origin: process.env.CLIENT_URL
+    origin: CLIENT_URL
 }))
 app.use(cookieParser());
-
-// Constants
-const DOWNLAOD_LINK_EXPIRATION_TIME = 10 * 60 * 1000; // 10 minutes expiration time
-const COOKIE_EXPIRATION = 30 * 24 * 60 * 60 * 1000 // 30 days
-const PORT = 3000;
 
 // Mapping
 let downloadLinkMap = new Map()
@@ -57,7 +59,7 @@ app.post('/download-email', (req,res) => {
         res.json({message: "Check your email"})
     })
     .catch(() => {
-        res.status(500).json({messag: "Error, please try again"})
+        res.status(500).json({message: "Error, please try again"})
     })
 })
 
@@ -96,8 +98,8 @@ function createCheckoutSession(item) {
           },
         ],
         mode: 'payment',
-        success_url: `${process.env.SERVER_URL}/purchase-success?itemId=${item.id}&sessionId={CHECKOUT_SESSION_ID}`,
-        cancel_url: process.env.CLIENT_URL,
+        success_url: `${SERVER_URL}/purchase-success?itemId=${item.id}&sessionId={CHECKOUT_SESSION_ID}`,
+        cancel_url: CLIENT_URL,
     });
 }
 

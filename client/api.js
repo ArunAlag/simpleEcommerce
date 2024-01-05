@@ -2,7 +2,7 @@ import axios from "axios";
 
 //('http://localhost:3000/<page_name>)
 let apiInstance = axios.create({
-    baseURL: process.env.SERVER_URL,
+    baseURL: 'https://simpleecommerce-backend.onrender.com',
     withCredentials: true,
 }) 
 
