@@ -7,8 +7,6 @@ let emailForm = document.querySelector('[data-email-form]');
 let emailInput = document.querySelector('[data-email-input]');
 let body = document.querySelector('body')
 
-body.style.background = "red";
-alert('Its connecting')
 
 emailForm.addEventListener('submit',async (e) => {
     e.preventDefault();
