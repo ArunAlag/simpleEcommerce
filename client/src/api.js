@@ -1,8 +1,9 @@
 import axios from "axios";
 
 //('http://localhost:3000/<page_name>)
+
 let apiInstance = axios.create({
-    baseURL: 'https://simpleecommerce-backend.onrender.com',
+    baseURL: process.env.SERVER_URL,
     withCredentials: true,
 }) 
 
@@ -11,6 +12,7 @@ let stripe = Stripe(process.env.STRIPE_PUBLIC_KEY);
 
 
 export async function downloadAll(email) {
+    console.log(email);
     return apiInstance.post('/download-all', {email})
     .then(res => alert(res.data.message))
     .catch(res => alert(res.data.message))

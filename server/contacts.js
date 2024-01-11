@@ -4,7 +4,7 @@ let items = require('./items.json');
 // Create a contact
 async function linkContactAndItem(email, {listId}) {
     let contact = await getContact(email);
-
+    console.log("linkContactAndItem is called")
     if(contact == null) {
         return createContact(email, listId);
     } else {
@@ -13,6 +13,7 @@ async function linkContactAndItem(email, {listId}) {
 }
 
 async function getContactPurchasedItems(email) {
+    console.log("getContactPurchaseItems is called")
     if(email == null) return [] 
 
     let contact = await getContact(email)
@@ -40,7 +41,7 @@ function createContact(email, listId) {
 }
 
 function updateContact(emailOrId, listId) {
-    return apiInstance.put(`/contact/${emailOrId}`,{
+    return apiInstance.put(`/contacts/${emailOrId}`,{
         listIds: [listId]
     })
 }

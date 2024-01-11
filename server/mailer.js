@@ -1,4 +1,5 @@
-const SERVER_URL = 'https://simpleecommerce-backend.onrender.com';
+const SERVER_URL = process.env.SERVER_URL;
+// const SERVER_URL = 'https://simpleecommerce-backend.onrender.com';
 let apiInstance = require('./brevoApiInstance');
 
 function sendDownloadLink(email, downloadlinkCode, item) {

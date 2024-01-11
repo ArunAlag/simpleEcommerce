@@ -14,19 +14,18 @@ let { linkContactAndItem, getContactPurchasedItems } = require('./contacts');
 // Constants
 const DOWNLAOD_LINK_EXPIRATION_TIME = 10 * 60 * 1000; // 10 minutes expiration time
 const COOKIE_EXPIRATION = 30 * 24 * 60 * 60 * 1000 // 30 days
-const PORT = 3000;
-const SERVER_URL = 'https://simpleecommerce-backend.onrender.com';
-const CLIENT_URL = 'https://sensational-kitsune-973f59.netlify.app';
+const PORT = process.env.PORT;
+const SERVER_URL = process.env.SERVER_URL;
+const CLIENT_URL = process.env.CLIENT_URL;
 
 // Initiate
-
 let app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cors({
     credentials: true,
-    origin: CLIENT_URL
+    origin: process.env.CLIENT_URL
 }))
 app.use(cookieParser());
 
@@ -121,10 +120,12 @@ app.get('/purchase-success', async (req,res) => {
     // Send user the download link
     sendDownloadLink(email, downloadLinkCode, item);
 
-    res.redirect(`${process.env.CLIENT_URL}/download-links.html`);
+    // res.redirect(`${process.env.CLIENT_URL}/download-links.html`);
+    res.redirect(`${CLIENT_URL}/download-links.html`);
 })
 
 function setEmailCookie(res, email) {
+    console.log("setEmailCookie called")
     res.cookie("email", email, {
             httpOnly: true,
             secure: true,
