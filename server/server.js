@@ -120,17 +120,15 @@ app.get('/purchase-success', async (req,res) => {
     // Send user the download link
     sendDownloadLink(email, downloadLinkCode, item);
 
-    // res.redirect(`${process.env.CLIENT_URL}/download-links.html`);
     res.redirect(`https://simpleecom-site.netlify.app/download-links.html`);
     // res.redirect(`http://localhost:1234/download-links.html`)
 })
 
 function setEmailCookie(res, email) {
+    //httpOnly: true,
     res.cookie("email", email, {
-            httpOnly: true,
             secure: true,
-            maxAge: COOKIE_EXPIRATION,
-            domain: "*.netlify.app"
+            maxAge: COOKIE_EXPIRATION
         }
     )
 }
