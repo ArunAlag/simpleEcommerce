@@ -13,13 +13,13 @@ async function linkContactAndItem(email, {listId}) {
 }
 
 async function getContactPurchasedItems(email) {
-    console.log("getContactPurchaseItems is called")
+    console.log("Email in getContactPurchasedItems: ", email)
     if(email == null) return [] 
 
     let contact = await getContact(email)
-
+    console.log("Contact info: ", contact)
     if(contact == null) return []
-
+    console.log("Contact listIds: ", contactListIds);
     return items.filter(item => contact.listIds.includes(item.listId))
 
 }

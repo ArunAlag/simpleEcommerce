@@ -19,6 +19,7 @@ export async function downloadAll(email) {
 }
 
 export async function getItems() {
+    console.log("api called");
     let responds = await apiInstance.get('/items')
 
     return responds.data;
