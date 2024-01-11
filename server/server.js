@@ -36,7 +36,7 @@ let downloadLinkMap = new Map()
 app.get('/items', async (req,res) => {
     let email = req.cookies.email;
     console.log("Email address in route: ", email)
-    let purchasedItemIds = await getContactPurchasedItems(email).map((item) => item.id)
+    let purchasedItemIds = (await getContactPurchasedItems(email)).map((item) => item.id)
     res.json(items.map((item) => {
         return {
             id:item.id,
