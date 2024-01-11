@@ -82,8 +82,8 @@ app.post('/create-checkout-session', async (req, res) => {
 });
 
 function createCheckoutSession(item) {
+    // To add any other requirements, go to https://stripe.com/docs/api/checkout/sessions/create
     return stripe.checkout.sessions.create({
-        // To add any other requirements, go to https://stripe.com/docs/api/checkout/sessions/create
         line_items: [
           {
             price_data: {
@@ -121,7 +121,7 @@ app.get('/purchase-success', async (req,res) => {
     sendDownloadLink(email, downloadLinkCode, item);
 
     // res.redirect(`${process.env.CLIENT_URL}/download-links.html`);
-    res.redirect(`${CLIENT_URL}/download-links.html`);
+    res.redirect(`simpleecom-site.netlify.app/download-links.html`);
 })
 
 function setEmailCookie(res, email) {
