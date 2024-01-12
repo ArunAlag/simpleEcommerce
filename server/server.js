@@ -110,7 +110,8 @@ app.get('/purchase-success', async (req,res) => {
     // Retrieve the email from the session
     let {customer_details: {email}} = await stripe.checkout.sessions.retrieve(req.query.sessionId);
 
-    setEmailCookie(res, email)
+    console.log("/purchase-sucess email: ", email)
+    setEmailCookie(res, email) 
 
     // Add the user to the email list
     linkContactAndItem(email, item);
@@ -126,7 +127,7 @@ app.get('/purchase-success', async (req,res) => {
 })
 
 function setEmailCookie(res, email) {
-    console.log("email cookie: ", cookie )
+    console.log("email cookie: ", email )
     //httpOnly: true,
     res.cookie("email", email, {
             secure: true,
