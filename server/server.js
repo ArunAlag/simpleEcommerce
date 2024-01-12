@@ -36,6 +36,7 @@ let downloadLinkMap = new Map()
 app.get('/items', async (req,res) => {
     let email = req.cookies.email;
     // let email = "sakari@gmail.com"
+    console.log("req: ", req)
     console.log("req.cookies: ", req.cookies)
     console.log("Email address in route: ", email)
     let purchasedItemIds = (await getContactPurchasedItems(email)).map((item) => item.id)
