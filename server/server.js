@@ -36,6 +36,7 @@ let downloadLinkMap = new Map()
 app.get('/items', async (req,res) => {
     let email = req.cookies.email;
     // let email = "sakari@gmail.com"
+    console.log("req.cookies: ", req.cookies)
     console.log("Email address in route: ", email)
     let purchasedItemIds = (await getContactPurchasedItems(email)).map((item) => item.id)
     res.json(items.map((item) => {
@@ -131,7 +132,7 @@ function setEmailCookie(res, email) {
     console.log("email cookie: ", email )
     //httpOnly: true,
     res.cookie("email", email, {
-            secure: false,
+            secure: true,
             maxAge: COOKIE_EXPIRATION
         }
     )
