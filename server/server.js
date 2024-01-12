@@ -64,6 +64,7 @@ app.post('/download-email', (req,res) => {
 
 app.post('/download-all', async(req,res) => {
     let email = req.body.email;
+    console.log("download all email: ", email)
     let items = await getContactPurchasedItems(email);
     setEmailCookie(res, email);
     sendAllDownloadLinks(email,items.map(item => {
@@ -109,6 +110,7 @@ app.get('/purchase-success', async (req,res) => {
     // Retrieve the email from the session
     let {customer_details: {email}} = await stripe.checkout.sessions.retrieve(req.query.sessionId);
 
+    console.log("/puchase-success email: ", email)
     setEmailCookie(res, email)
 
     // Add the user to the email list
@@ -125,6 +127,7 @@ app.get('/purchase-success', async (req,res) => {
 })
 
 function setEmailCookie(res, email) {
+    console.log("email cookie: ", cookie )
     //httpOnly: true,
     res.cookie("email", email, {
             secure: true,
